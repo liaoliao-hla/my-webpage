@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body
+        {
+            background-image: url(1629449018344288.jpg);
+            background-size: cover;
+            /* 背景图片不重复显示 */
+            background-repeat: no-repeat;
+            /* 背景图片在水平和垂直方向都居中显示 */
+            background-position: center center;
+            /* 让背景图片固定，不随页面滚动而滚动 */
+            background-attachment: fixed;
+            /* 去除 body 默认的外边距 */
+            margin: 0;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .important
+        {
+            width: 200px;
+            height: 200px;
+            /* margin: auto; */
+            background: 0;
+
+           
+
+        }
+        .flex 
+        {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .row
+        {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        .shurukuang
+        {
+           border: none;
+            background:0;
+            padding: 2px 4px;
+            text-align: center;
+            font-size: 30px;
+        }
+        .shurukuang:focus   
+        {
+        outline: none;
+        }
+    </style>
+</head>
+<body>
+   <div class="important flex">
+   <div class="row">
+    <input placeholder="最重要的事" class="shurukuang">
+    <span class="duigou" onclick="change()">√</span>
+   </div> 
+    <div style="margin-top: 5px; border-bottom:1px solid black ; height: 1px; width: 300px;"></div>
+    
+    <script>
+        let  inputbox=document.querySelector('.shurukuang')
+        let  confirmbox=document.querySelector('.duigou');  
+        let sign=false;
+        window.onload = function() {
+           let savedValue = window.localStorage.getItem("shi");
+           if (savedValue) {
+               inputbox.value = savedValue;
+               confirmbox.innerHTML = '×';
+               sign = true;
+           }
+       };   
+       function change()
+       {
+        
+        if(sign)
+       {
+        sign=false;
+        confirmbox.innerHTML='√'
+        window.localStorage.removeItem("shi")
+        inputbox.value=' '
+       }
+       else
+       {
+        sign=true
+        confirmbox.innerHTML='×'
+        
+        window.localStorage.setItem("shi",inputbox.value);
+       }
+       }
+    </script>
+   </div>
+</body>
+</html>
